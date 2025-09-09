@@ -1,0 +1,6 @@
+artifact_location: file:///D:/projects/DVC%20project2/Exp_autologging_using_mlflow/mlruns/197448989324134464
+creation_time: 1742308773892
+experiment_id: '197448989324134464'
+last_update_time: 1742308773892
+lifecycle_stage: active
+name: water_exp_rf_autologging

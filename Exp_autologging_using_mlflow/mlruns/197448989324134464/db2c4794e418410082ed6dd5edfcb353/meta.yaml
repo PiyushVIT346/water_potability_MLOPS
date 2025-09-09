@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/projects/DVC%20project2/Exp_autologging_using_mlflow/mlruns/197448989324134464/db2c4794e418410082ed6dd5edfcb353/artifacts
+end_time: 1742308882870
+entry_point_name: ''
+experiment_id: '197448989324134464'
+lifecycle_stage: active
+run_id: db2c4794e418410082ed6dd5edfcb353
+run_name: invincible-moose-319
+run_uuid: db2c4794e418410082ed6dd5edfcb353
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742308790478
+status: 3
+tags: []
+user_id: HP
