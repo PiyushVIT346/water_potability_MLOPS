@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/779204798443528527/b99c6e64d2414e73914a0dfdef952784/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '779204798443528527'
+lifecycle_stage: active
+run_id: b99c6e64d2414e73914a0dfdef952784
+run_name: Random forest tuning
+run_uuid: b99c6e64d2414e73914a0dfdef952784
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742383674067
+status: 1
+tags: []
+user_id: HP
