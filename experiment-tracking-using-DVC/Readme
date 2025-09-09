@@ -1,0 +1,62 @@
+Create a folder of data and src.
+add dataset in data folder
+add file water_model.py in src folder
+Write a ml code and run it
+D:\projects\DVC project2>cd experiment-tracking-using-DVC
+Accuracy: 0.6890
+Precision: 0.6515
+Recall: 0.3525
+F1 Score: 0.4574
+
+write code for ml and convert it to dvc live type
+D:\projects\DVC project2\experiment-tracking-using-DVC>pip install dvclive 
+
+D:\projects\DVC project2\experiment-tracking-using-DVC>git init
+D:\projects\DVC project2\experiment-tracking-using-DVC>dvc init
+D:\projects\DVC project2\experiment-tracking-using-DVC>dvc add .\data\water_potability.csv
+D:\projects\DVC project2\experiment-tracking-using-DVC>git status
+D:\projects\DVC project2\experiment-tracking-using-DVC>git add .
+D:\projects\DVC project2\experiment-tracking-using-DVC>git commit -m "Intial Commit"
+
+Change value of n_estimators in params.yaml
+D:\projects\DVC project2\experiment-tracking-using-DVC>python src/water_model.py
+D:\projects\DVC project2\experiment-tracking-using-DVC>python src/water_model.py
+  Experiment                 Created    accuracy   precision    recall   f1 score   n_estimators  
+ ────────────────────────────────────────────────────────────────────────────────────────────────
+  workspace                  -           0.67378     0.60714   0.34836    0.44271   100          
+  master                     11:52 PM          -           -  Experiment                 Created    accuracy   precision    recall   f1 score   n_estimators  
+ ────────────────────────────────────────────────────────────────────────────────────────────────
+  workspace                  -           0.67378     0.60714   0.34836    0.44271   100
+  master                     11:52 PM          -           -         -          -   -
+  ├── 250e9d9 [muted-yips]   11:58 PM    0.67378     0.60714   0.34836    0.44271   100
+  └── 0dca0b3 [basal-wave]   11:53 PM    0.68902     0.65152   0.35246    0.45745   500
+ ────────────────────────────────────────────────────────────────────────────────────────────────
+
+2 experiments
+D:\projects\DVC project2\experiment-tracking-using-DVC>python src/water_model.py
+
+D:\projects\DVC project2\experiment-tracking-using-DVC>dvc exp show
+WARNING: Unable to find `less` in the PATH. Check out <https://man.dvc.org/pipeline/show> for more info.
+ ────────────────────────────────────────────────────────────────────────────────────────────────────
+  Experiment                 Created        accuracy   precision    recall   f1 score   n_estimators  
+ ────────────────────────────────────────────────────────────────────────────────────────────────────
+  workspace                  -                0.6753     0.61151   0.34836    0.44386   200          
+  master                     Mar 17, 2025          -           -         -          -   -            
+  ├── a0c0a77 [suave-rein]   12:00 AM         0.6753     0.61151   0.34836    0.44386   200
+  ├── 250e9d9 [muted-yips]   Mar 17, 2025    0.67378     0.60714   0.34836    0.44271   100
+  └── 0dca0b3 [basal-wave]   Mar 17, 2025    0.68902     0.65152   0.35246    0.45745   500
+ ────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Remove any experiment
+D:\projects\DVC project2\experiment-tracking-using-DVC>dvc exp remove suave-rein
+
+Applying best accuray experiment using its name
+D:\projects\DVC project2\experiment-tracking-using-DVC>dvc exp apply fishy-skat
+Building workspace index         |2.00 [00:00, 11.0entry/s]
+Comparing indexes                |3.00 [00:00,  250entry/s]
+Applying changes                 |0.00 [00:00,     ?file/s]
+Changes for experiment 'fishy-skat' have been applied to your current workspace.
+
+D:\projects\DVC project2\experiment-tracking-using-DVC>git status
+D:\projects\DVC project2\experiment-tracking-using-DVC>git add .
+D:\projects\DVC project2\experiment-tracking-using-DVC>git commit -m "Best experiment with n_estimators=1000"
