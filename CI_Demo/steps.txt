@@ -1,0 +1,72 @@
+create a new file example.py having linther error
+
+pip install flake8 
+To check linther error using flake8, run the following command:
+flake8 example.py
+
+intialize git:
+git init 
+D:\projects\DVC project2\CI_Demo>git remote add origin https://github.com/PiyushVIT346/ci_demo1.git
+
+Create a new folder ".github"
+create a new folder inside .github folder "workflows"
+create a new file inside workflows folder "lint_yaml"
+in lint_yaml file add code: 
+name: CI demo
+
+on: push
+
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+      - name: Run flake8
+        run: |
+            flake8 example.py
+This code is to make Assistant 
+
+now perform these command and check action tab in github
+git status 
+git add .
+git commit -m "Intial commit"
+git push origin master 
+now check the action tab in github, if it show error than change code of example.py by following lint error elimination
+check it and correct till it run
+
+
+change the code to add pull functioning to be also executed. 
+make and check new branch and switch new brach as command:
+Check the Current Branch: git branch
+Create and Switch to the New Branch: git checkout -b multiplication
+Verify the Branch Creation: git branch
+Push the New Branch to Remote: git push origin multiplication
+Switch Back to Master Branch: git checkout master
+Switch Back to multiplication Branch: git checkout multiplication 
+
+
+merge multiplication branch and master branch
+git checkout master 
+git merge multiplication
+
+
+To test function(unittest)
+create new file test_unit.py and enter the code
+To run, write the command: 
+git status
+git add .
+git commit -m "add unittest"
+git push origin master
+Add new job in lint.yaml
+Run this as above
+
+to make two job run sequentially, add this line in lint.yaml in job of unittest: needs: lint
+check the action in github
