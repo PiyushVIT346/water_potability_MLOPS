@@ -6,9 +6,11 @@
 
 Water quality assessment involves analyzing multiple physicochemical parameters such as pH, hardness, dissolved solids, chloramines, sulfate, conductivity, organic carbon, trihalomethanes, and turbidity to determine whether water is potable. This project solves the problem of automatically classifying water samples as potable or non-potable using machine learning, while also addressing the challenges of managing an ML workflow by implementing data and pipeline versioning, reproducible model training, experiment tracking, parameter management, model evaluation, and automated testing using MLOps tools such as DVC, MLflow, DagsHub, and Python.
 
-#  🚀 Action & Result
+
+# Action & Result
 
 Developed an end-to-end Water Potability MLOps pipeline that preprocesses water-quality data, trains a Random Forest classification model, evaluates it using accuracy, precision, recall, and F1-score, and manages the complete ML lifecycle using DVC for data and pipeline versioning, DVC Live and MLflow for experiment tracking, DagsHub for remote experiment management, and PyTest/Flake8 for testing and code quality. As a result, the project provides a reproducible, version-controlled, and experiment-driven ML workflow that makes it easier to track model changes, compare experiments, reproduce results, and maintain the machine-learning system efficiently.
+
 ---
 
 ## 📌 Table of Contents
