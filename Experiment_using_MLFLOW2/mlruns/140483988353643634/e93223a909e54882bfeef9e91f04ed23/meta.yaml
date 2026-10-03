@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/140483988353643634/e93223a909e54882bfeef9e91f04ed23/artifacts
+end_time: 1742294375801
+entry_point_name: ''
+experiment_id: '140483988353643634'
+lifecycle_stage: active
+run_id: e93223a909e54882bfeef9e91f04ed23
+run_name: worried-turtle-424
+run_uuid: e93223a909e54882bfeef9e91f04ed23
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742294310369
+status: 3
+tags: []
+user_id: HP

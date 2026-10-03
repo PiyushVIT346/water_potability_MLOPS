@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/140483988353643634/4961880c5d244c26b656872a9ccc5ccd/artifacts
+end_time: 1742292313544
+entry_point_name: ''
+experiment_id: '140483988353643634'
+lifecycle_stage: active
+run_id: 4961880c5d244c26b656872a9ccc5ccd
+run_name: welcoming-finch-219
+run_uuid: 4961880c5d244c26b656872a9ccc5ccd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742292297262
+status: 3
+tags: []
+user_id: HP

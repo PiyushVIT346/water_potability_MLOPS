@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/140483988353643634/0bc21555576d41cd99aca3b206c1a079/artifacts
+end_time: 1742293984139
+entry_point_name: ''
+experiment_id: '140483988353643634'
+lifecycle_stage: active
+run_id: 0bc21555576d41cd99aca3b206c1a079
+run_name: hilarious-vole-557
+run_uuid: 0bc21555576d41cd99aca3b206c1a079
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742293926839
+status: 3
+tags: []
+user_id: HP

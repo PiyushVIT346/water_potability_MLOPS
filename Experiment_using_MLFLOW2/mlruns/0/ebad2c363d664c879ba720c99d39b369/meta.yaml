@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/ebad2c363d664c879ba720c99d39b369/artifacts
+end_time: 1742291138804
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ebad2c363d664c879ba720c99d39b369
+run_name: capable-fish-189
+run_uuid: ebad2c363d664c879ba720c99d39b369
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742291121434
+status: 3
+tags: []
+user_id: HP
