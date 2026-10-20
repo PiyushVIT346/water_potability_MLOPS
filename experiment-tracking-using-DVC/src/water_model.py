@@ -7,47 +7,64 @@ import pickle
 from dvclive import Live
 import yaml
 
-n_estimators = yaml.safe_load(open('D:\projects\DVC project2\experiment-tracking-using-DVC\dvclive\params.yaml'))["n_estimators"]
+n_estimators = yaml.safe_load(open(r'D:\projects\DVC project2\experiment-tracking-using-DVC\dvclive\params.yaml'))["n_estimators"]
 
 data = pd.read_csv("data/water_potability.csv")
 
 train_data, test_data = train_test_split(data, test_size=0.2, random_state=42)
 
-def fill_missing_with_median(df):
-    for column in df.columns:
-        if df[column].isnull().any():
-            median_value = df[column].median()
-            df[column].fillna(median_value, inplace=True)
-    return df
+# --- Modular Preprocessing Functions ---
 
-train_processed_data = fill_missing_with_median(train_data)
-test_processed_data = fill_missing_with_median(test_data)
+def get_imputation_params(df: pd.DataFrame, exclude_cols: list) -> dict:
+    medians = {}
+    cols_to_process = [col for col in df.columns if col not in exclude_cols]
+    for col in cols_to_process:
+        medians[col] = df[col].median()
+    return medians
 
-x_train = train_processed_data.iloc[:, :-1].values
-y_train = train_processed_data.iloc[:, -1].values
+def impute_missing(df: pd.DataFrame, medians: dict) -> pd.DataFrame:
+    df_out = df.copy()
+    for col, median_val in medians.items():
+        if col in df_out.columns:
+            df_out[col] = df_out[col].fillna(median_val)
+    return df_out
 
-clf = RandomForestClassifier(n_estimators=n_estimators, random_state=42)
-clf.fit(x_train, y_train)
+def get_outlier_bounds(df: pd.DataFrame, exclude_cols: list) -> dict:
+    bounds = {}
+    cols_to_process = [col for col in df.columns if col not in exclude_cols]
+    for col in cols_to_process:
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
+        iqr = q3 - q1
+        bounds[col] = (q1 - 1.5 * iqr, q3 + 1.5 * iqr)
+    return bounds
 
-with open(r"water_model.pkl", 'wb') as f:
-    pickle.dump(clf, f)
+def cap_outliers(df: pd.DataFrame, bounds: dict) -> pd.DataFrame:
+    df_out = df.copy()
+    for col, (lower, upper) in bounds.items():
+        if col in df_out.columns:
+            df_out[col] = np.clip(df_out[col], lower, upper)
+    return df_out
 
-x_test = test_processed_data.iloc[:, :-1].values
-y_test = test_processed_data.iloc[:, -1].values
+def get_scaling_params(df: pd.DataFrame, exclude_cols: list) -> dict:
+    params = {}
+    cols_to_process = [col for col in df.columns if col not in exclude_cols]
+    for col in cols_to_process:
+        params[col] = {'mean': df[col].mean(), 'std': df[col].std()}
+    return params
 
-with open(r"water_model.pkl", 'rb') as f:
-    model = pickle.load(f)
+def scale_features(df: pd.DataFrame, params: dict) -> pd.DataFrame:
+    df_out = df.copy()
+    for col, stats in params.items():
+        if col in df_out.columns and stats['std'] != 0:
+            df_out[col] = (df_out[col] - stats['mean']) / stats['std']
+    return df_out
 
-y_pred = model.predict(x_test)
+# --- Apply Preprocessing ---
 
-acc = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
-f1 = f1_score(y_test, y_pred)
+exclude_cols = ['Potability']
 
-with Live(save_dvc_exp=True) as live:
-    live.log_metric("accuracy", acc)
-    live.log_metric("precision", precision)
-    live.log_metric("recall", recall)
-    live.log_metric("f1 score", f1)
-    live.log_param("n_estimators", n_estimators)
+# 1. Fit parameters on Training data only
+medians = get_imputation_params(train_data, exclude_cols)
+
+# Temporarily impute train to calculate accurate bounds and scaling params
